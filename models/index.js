@@ -1,26 +1,14 @@
 // import models
+const User = require('./User');
+const Watchlist = require('./Watchlist');
 
-const User = require('./user');
-const Watchlist = require('./watchlist');
+User.hasMany(Watchlist, {
+    foreignKey: 'user_id'
+});
 
-User.hasMany(Project, {
+Watchlist.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
-  });
-  
-  Project.belongsTo(User, {
-    foreignKey: 'user_id'
-  });
-  
-  module.exports = { User, Project };
-  
+});
 
-
-
-
-
-
-module.exports = {
-    Watchlist,
-    User,
-  };
+module.exports = { User, Watchlist };
