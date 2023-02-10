@@ -60,7 +60,7 @@ Watchlist.init(
 },
       // define columns
     {
-      sequelize,
+      sequelize: sequelize,
       timestamps: false,
       freezeTableName: true,
       underscored: true,
