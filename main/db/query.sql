@@ -1,1 +1,0 @@
-USE cineme_db;

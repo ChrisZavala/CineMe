@@ -1,9 +1,0 @@
-DROP DATABASE IF EXISTS cineme_db;
-CREATE DATABASE cineme_db;
-
-USE cineme_db;
-
--- CREATE TABLE movies (
---   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
--- );
-
