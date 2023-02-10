@@ -48,3 +48,5 @@ sequelize.sync({ force: false }).then(() => {
 
 // http://www.omdbapi.com/?i=tt3896198&apikey=2906f9d9
 // https://www.omdbapi.com/
+
+//Sending to git one more time 
