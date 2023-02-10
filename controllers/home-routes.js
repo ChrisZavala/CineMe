@@ -96,6 +96,7 @@ router.get('/search/:type/:query', async (req, res) => {
         let type = req.params.type === "movie";
         const searchDB = await searchContent(query, type);
         for (let y=0; y<searchContent.data.results.length; y++){
+            searchDB.data.results[y] = createContent(searchDB.data.results[y]);
         }
         res.render('search', {
             searchContent: searchDB.data.results, loggedIn: req.session.loggedIn
