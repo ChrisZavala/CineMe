@@ -1,1 +1,1 @@
-USE movies_db;
+USE cineme_db;
