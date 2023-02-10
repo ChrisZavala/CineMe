@@ -41,12 +41,3 @@ sequelize.sync({ force: false }).then(() => {
     app.listen(process.env.PORT ||3001, () => console.log(`App listening at http://localhost:${PORT} 🚀`));
   });
 
-//API Key (v3 auth)
-// API Key: d080004efb38fede1753960b869fc0cc
-// Example API Request
-// https://api.themoviedb.org/3/movie/550?api_key=d080004efb38fede1753960b869fc0cc
-
-// http://www.omdbapi.com/?i=tt3896198&apikey=2906f9d9
-// https://www.omdbapi.com/
-
-//Sending to git one more time 
