@@ -1,6 +1,6 @@
 //var declare: 
 const router = require('express').Router();
-const { User } = require('../../models'); //havenot finished this yet. 
+const { User } = require('../../models'); 
 const withAuth = require('../../utils/auth');
 
 //get / with async/await
