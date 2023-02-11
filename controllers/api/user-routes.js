@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
         })
         res.json(dbUserData)
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     };
   });
@@ -44,9 +45,11 @@ router.get('/', async (req, res) => {
         req.session.username = dbUserData.username;
         req.session.email = dbUserData.email;
         req.session.loggedIn = true;
+
         res.json(dbUserData);
       });
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     };
   });
@@ -54,13 +57,21 @@ router.get('/', async (req, res) => {
   //post /login with async/await
   router.post('/login', async (req, res) => {
     try {
-        const dbUserData = await User.findOne({ 
-            where: { username: req.body.username }
-        });
-        if(!dbUserData) {
-            res.status(400).json({ message: 'Password not correct!' });
-            return; 
+      const dbUserData = await User.findOne({
+        where: {
+          username: req.body.username
         }
+      });
+      if (!dbUserData) {
+        res.status(400).json({ message: 'No user with that username!' });
+        return;
+      }
+
+      const validPassword = dbUserData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      return;
+    }
         req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
@@ -69,17 +80,19 @@ router.get('/', async (req, res) => {
         res.json({ user: dbUserData, message: "You are logged in!" });
         });
     } catch (err) {
+      console.log(err);
         res.status(500).json(err);
     }
   });
 
   //post /logout 
-  router.post('/logout', withAuth, (req, res) => {
+  router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
       req.session.destroy(() => {
         res.status(204).end();
       });
-    } else {
+    }
+    else {
       res.status(404).end();
     }
   });
@@ -106,9 +119,11 @@ router.get('/', async (req, res) => {
       req.session.email = (req.body.email) ? req.body.email : req.session.email;
       res.json(dbUserData);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   });
+  
   //delete /id: async/await
   router.delete('/:id', async (req, res) => {
     try {

@@ -40,7 +40,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [8]
+                len: [4] //changed the length from 8 to 4 for password
             }
         }
     },
