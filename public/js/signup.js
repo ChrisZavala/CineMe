@@ -6,7 +6,7 @@ async function signupFormHandler(event) {
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
   
-    if (username && email && password) {
+    if (username && password) {
       const response = await fetch('/api/users', {
         method: 'POST',
         body: JSON.stringify({ username, email, password }),
@@ -17,10 +17,10 @@ async function signupFormHandler(event) {
         alert('Account created! Logging you in now.');
         document.location.replace('/');
       } else {
+        console.log(response);
         updateAlertBox('Username, Email or Password is incorrect!');
       }
     }
   }
-
 //Event Listener for submit
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+document.querySelector('#signup-form').addEventListener('submit', signupFormHandler);

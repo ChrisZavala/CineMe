@@ -7,7 +7,7 @@ const sequelize = require('../config/connection');
 //getting all data variables: 
 const { getContentData, getPopData, getTopData, createContent, searchContent,
 } = require("../utils/movieApi");
-const { User, Watchlist } = require('../models');
+const { User, Watchlist, Comment, Poll} = require('../models');
 
 //homepage for the CineMe website. 
 router.get('/', async (req, res) => {
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
         //here we are also making our api calls to get everything popular and using the sites api to our advantage. 
         //handlebars call to homepage
         res.render("homepage", {
-            popularMovies: getContentData[0].data.results,
+            popMovies: getContentData[0].data.results,
             topMovies: getContentData[1].data.results,
             loggedIn: req.session.loggedIn,
         });
@@ -44,20 +44,36 @@ async function createsContent(req, res, type, id) {
     try {
         let dataQuery = await Promise.all([
             getContentData(type, id),
-            Comment.findAll({
+            Poll.findAll({
                 where: {
-                    content_type: type,
-                    content_id: req.params.id,
+                  content_type: type,
+                  content_id: req.params.id
+                },
+                attributes: [
+                  [sequelize.fn("AVG", sequelize.cast(sequelize.col('rating'), 'integer')), 'avg_rating']
+                ]
+              }),
+              Poll.findOne({
+                where: {
+                  user_id: (req.session.loggedIn) ? req.session.user_id : 0,
+                  content_type: type,
+                  content_id: req.params.id
+                }
+              }),
+              Comment.findAll({
+                where: {
+                  content_type: type,
+                  content_id: req.params.id,
                 },
                 include: [
-                    {
-                        model: User,
-                        attributes: { exclude: ['password'] },
-                    },
+                  {
+                    model: User,
+                    attributes: { exclude: ['password'] },
+                  },
                 ],
-            })
-        ]);
-        const content = createContentObj(dataQuery[0].data);
+              })
+            ]);
+        const content = createContent(dataQuery[0].data);
         const comments = dataQuery[3].map((entry) => entry.get({ plain: true }));
         res.render("content-page", {
             content,
@@ -148,7 +164,8 @@ router.get('/search/:type/:query', async (req, res) => {
         }
         //Handlebars call here:
         res.render('search', {
-            searchContent: searchDB.data.results, loggedIn: req.session.loggedIn
+            searchContent: searchDB.data.results, 
+            loggedIn: req.session.loggedIn
         });
     } catch (err) {
         console.log(err);

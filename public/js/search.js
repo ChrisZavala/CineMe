@@ -8,4 +8,4 @@ function search(event) {
     search = search.split(' ').join('+');
     document.location.replace('/search/' + shelia + '/' + search);
 }
-$('.search-form').on('submit', search);
+document.querySelector('#search-form').addEventListener('submit', search);

@@ -1,6 +1,6 @@
 //loginFormHandler()
   //This is the function that get the user to log in 
-  const loginFormHandler = async (event) => {
+  async function loginFormHandler(event) {
     event.preventDefault();
   
     // Collect values from the login form
@@ -26,4 +26,4 @@
     }
   };
 //Event listener for Submit:
-  document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+  document.querySelector('#login-form').addEventListener('submit', loginFormHandler);

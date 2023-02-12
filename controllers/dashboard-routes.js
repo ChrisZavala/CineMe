@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User } = require('../models/');
+const { User, Comment } = require('../models/');
 const withAuth = require('../utils/auth');
 
 //get / async/await
 router.get('/', withAuth, async (req, res) => {
     try {
-        const dbCommentData = await Comment.findAll({
+        const commentData = await Comment.findAll({
             where: {
                 user_id: req.session.user_id
             },
@@ -19,7 +19,7 @@ router.get('/', withAuth, async (req, res) => {
             ],
             include: [{ model: User, attributes: { exclude: ['password']}}]
         });
-        const comments = dbCommentData.map(comment => comment.get({plain: true}));
+        const comments = commentData.map(comment => comment.get({plain: true}));
         const username = req.session.username;
         const email = req.session.email;
         res.render('dashboard', { comments, username, email, loggedIn: true}); 
