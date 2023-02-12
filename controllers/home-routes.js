@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
         //here we are also making our api calls to get everything popular and using the sites api to our advantage. 
         //handlebars call to homepage
         res.render("homepage", {
-            popularMovies: getContentData[0].data.results,
+            popMovies: getContentData[0].data.results,
             topMovies: getContentData[1].data.results,
             loggedIn: req.session.loggedIn,
         });
@@ -164,7 +164,8 @@ router.get('/search/:type/:query', async (req, res) => {
         }
         //Handlebars call here:
         res.render('search', {
-            searchContent: searchDB.data.results, loggedIn: req.session.loggedIn
+            searchContent: searchDB.data.results, 
+            loggedIn: req.session.loggedIn
         });
     } catch (err) {
         console.log(err);
