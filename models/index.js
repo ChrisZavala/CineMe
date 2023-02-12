@@ -17,7 +17,7 @@ Poll.belongsTo(User, {
     onDelete: 'CASCADE'
 });
 
-Comment.belongsTo(User {
+Comment.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
 });
