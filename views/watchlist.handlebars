@@ -1,0 +1,35 @@
+// Created container and added a heading that will display the movie title 
+<div class="container my-5">
+  <h1 class="text-center">{{content_title}}</h1>
+  // Table head w/ headers for each field
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Content ID</th>
+        <th>Content Type</th>
+        <th>Content Title</th>
+        <th>Poster Path</th>
+        <th>Release Year</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    // Table body that loops through each watchlist item
+    <tbody>
+      {{#each Watchlist}}
+      <tr>
+        <td>{{id}}</td>ß
+        <td>{{user_id}}</td>
+        <td>{{content_id}}</td>
+        <td>{{content_type}}</td>
+        <td>{{content_title}}</td>
+        <td>{{poster_path}}</td>
+        <td>{{release_year}}</td>
+        <td>{{status}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<script src="/js/watchlist.js"></script>
