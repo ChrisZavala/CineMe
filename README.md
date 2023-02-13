@@ -36,7 +36,8 @@ npm start
   Dan Johnston: https://github.com/dooleydan \
   Rick Martinez: https://github.com/Rick3Mrtz \
   Shetty Saineha: https://github.com/ney2thehey \
-  Christopher Zavala: <https://github.com/Re-Gi> 
+  Christopher Zavala: https://github.com/chriszavala
+
 
   ## License 
   MIT License

@@ -1,0 +1,17 @@
+{{> header}}
+
+<!-- Search results container-->
+<div class="container mt-5">
+    <h3 class="Poop">Search Results</h3>
+    <!-- The search results will be displayed here using Handlebars.js loops and conditionals -->
+    {{#if searchContent}}
+     <ul class="list-group">
+        {{#each searchContent}}
+         <li class="list-group-item">
+            {{this.content_title}} ({{this.release_year}})
+         </li>
+     </ul>
+     {{else}}
+     <p class="Shinobi">No results found</p>
+     {{if}}
+</div>

@@ -107,3 +107,8 @@ typings/
 
 # TernJS port file
 .tern-port
+
+# adding these next lines as per instructions on the challenge.
+node_modules/
+.DS_Store/
+.env
