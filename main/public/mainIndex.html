@@ -13,46 +13,55 @@
 
 <body class="body">
 
-  <header class="hero p-6" style="background-color: rgb(0, 0, 0)";>
-    <div class="container">
-      <h1 class="title is-1 has-text-white">TOP (HORROR) MOVEIS!</h1>
+  <header class="hero" style="background-color: rgb(0, 0, 0)";>
+    <div class="container" style="width: fit-content;">
+      <!-- <h1 class="title is-1 has-text-white">TOP (HORROR) MOVEIS!</h1> -->
+
+
+      <section class="section">
+        <div class="container">
+          <!-- Label above search bar  -->
+          <!-- <div class="row m-0"> -->
+          <p for="search-input" id="genre-text" class="search-label hide-intro m-5 title is-4 has-text-white">PICK A GENRE HERE! </p>
+        </div>
+        <!-- Ingredient search label input and button-->
+        <div class="container field has-addons">
+          <div class="control is-expanded">
+            <div class="select is-primary is-fullwidth">
+              <select name="select your genre" id="genreDropdown">
+                <option value="" selected disabled>Select your Genre</option>
+                <option value="Horror">Horror</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Drama">Drama</option> 
+                <option value="Crime">Crime</option>Indie, drama, romance, science fiction, musical, thriller, adventure
+                <option value="Romance">Romance</option>
+              </select>
+            </div>
+          </div>
+          <p class="control">
+            <button type="submit" class="button is-primary" id="horror-search-button">Search</button>
+          </p>
+  
+        </div>
+        </div>
+  
+        </div>
+      </section>
     </div>
+
+    
   </header>
+
+  <div class="container">
+    <h1 class="title is-1 p-6">TOP (HORROR) MOVEIS!</h1>
+    </div>
+
 
   <main>
 
 
-    <section class="section">
-      <div class="container">
-        <!-- Label above search bar  -->
-        <!-- <div class="row m-0"> -->
-        <p for="search-input" id="genre-text" class="search-label hide-intro m-5 title is-4">PICK A GENRE HERE! </p>
-      </div>
-      <!-- Ingredient search label input and button-->
-      <div class="container field has-addons">
-        <div class="control is-expanded">
-          <div class="select is-primary is-fullwidth">
-            <select name="select your genre" id="genreDropdown">
-              <option value="" selected disabled>Select your Genre</option>
-              <option value="Horror">Horror</option>
-              <option value="Action">Action</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Adventure">Adventure</option>
-              <option value="Drama">Drama</option> 
-              <option value="Crime">Crime</option>Indie, drama, romance, science fiction, musical, thriller, adventure
-              <option value="Romance">Romance</option>
-            </select>
-          </div>
-        </div>
-        <p class="control">
-          <button type="submit" class="button is-primary" id="horror-search-button">Search</button>
-        </p>
-
-      </div>
-      </div>
-
-      </div>
-    </section>
 
     <!-- search history -->
 
