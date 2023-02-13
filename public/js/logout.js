@@ -12,5 +12,5 @@ async function logout() {
     }
   }
   //Same ole Same ole. 
-  document.querySelector('#logout').addEventListener('click', logout);
+  document.querySelector('#nav-logout').addEventListener('click', logout);
   

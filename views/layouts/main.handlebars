@@ -4,186 +4,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CineMe Movie Finder</title>
-  <!-- <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" /> -->
+  <title>CineMe</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" type="text/css" href="./assets/CSS/style.css" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/fontawesome.min.css" 
+  integrity="sha512-cHxvm20nkjOUySu7jdwiUxgGy11vuVPE9YeK89geLMLMMEOcKFyS2i+8wo0FOwyQO/bL8Bvq1KMsqK4bbOsPnA==" 
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="body">
-
-  <header class="hero p-6" style="background-color: rgb(0, 0, 0)";>
-    <div class="container">
-      <h1 class="title is-1 has-text-white">TOP (HORROR) MOVEIS!</h1>
-    </div>
-  </header>
-
-  <main>
-
-
-    <section class="section">
-      <div class="container">
-        <!-- Label above search bar  -->
-        <!-- <div class="row m-0"> -->
-        <p for="search-input" id="genre-text" class="search-label hide-intro m-5 title is-4">PICK A GENRE HERE! </p>
+<body class="is-flex is-flex-direction-column has-background-dark">
+  <header>
+    <!-- navigation -->
+    <nav class="navbar is-fixed-top is-black" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand px-3">
+        <a class="navbar-item" href="/">
+          <h1 class="has-text-weight-bold is-size-4 is-size-5-touch" id="nav-logo">
+            CineMe
+          </h1>
+        </a>
+        {{!-- <button id="searchIcon" class="navbar-item is-medium p-0">
+          <span class="icon has-text-info is-medium">
+            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+          </span>
+        </button> --}}
+        <a role="button" class="navbar-burger m-0" aria-label="menu" aria-expanded="false"
+          data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
-      <!-- Ingredient search label input and button-->
-      <div class="container field has-addons">
-        <div class="control is-expanded">
-          <div class="select is-primary is-fullwidth">
-            <select name="select your genre" id="genreDropdown">
-              <option value="" selected disabled>Select your Genre</option>
-              <option value="Horror">Horror</option>
-              <option value="Action">Action</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Adventure">Adventure</option>
-              <option value="Drama">Drama</option> 
-              <option value="Crime">Crime</option>Indie, drama, romance, science fiction, musical, thriller, adventure
-              <option value="Romance">Romance</option>
+
+<!-- search field -->
+      <form class="navbar-item navbar-search field has-addons mb-0 search-hide search-form">
+        <div class="control">
+          <span id="menu-search-filter" class="select is-rounded">
+            <select class="search-filter-dropdown">
+              <option value="movie">CineMe</option>
             </select>
+          </span>
+        </div>
+        <div class="control is-expanded">
+          <input class="input" type="text" placeholder="Use CineMe to Search for any Movie!" id="search-input" />
+        </div>
+        <div class="control">
+          <button class="button is-info is-rounded" type="submit" id="search">
+            <span class="icon">
+              <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+            </span>
+          </button>
+        </div>
+      </form>
+
+
+   <!-- navbar menu -->
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Movies
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item has-text-centered" id="nav-pop-mov" href="/#popular-movies-section">
+                Popular
+              </a>
+              <a class="navbar-item has-text-centered" id="nav-pop-mov" href="/#top-movies-section">
+                Top Rated
+              </a>
+               <a class="navbar-item has-text-centered" id="nav-pop-mov" href="/#action-movies-section">
+                Action
+              </a>
+               </a>
+               <a class="navbar-item has-text-centered" id="nav-pop-mov" href="/#comedy-movies-section">
+                Comedy
+              </a>
+              <a class="navbar-item has-text-centered" id="nav-pop-mov" href="/#romance-movies-section">
+                Romance
+              </a>
+            </div>
+          </div>
+         
+        <div class="navbar-end">
+          <a class="navbar-item has-text-centered" id="nav-pop-mov" href="/watchlist">
+            Watchlist
+          </a>
+          <div class="navbar-item">
+            <div class="buttons">
+              {{#if loggedIn}}
+              <a class="button is-info is-outlined" id="nav-dashboard" href="/dashboard">
+                <span class="icon is-small">
+                  <i class="fa-solid fa-bars"></i>
+                </span>
+                <span>Dashboard</span>
+              </a>
+              <button class="button is-danger is-outlined" id="nav-logout">
+                <span class="icon is-small">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </span>
+                <span>Logout</span>
+              </button>
+              {{else}}
+              <a class="button is-info is-outlined" id="nav-login" href="/login">
+                <span class="icon is-small">
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </span>
+                <span>Login</span>
+              </a>
+              <a class="button is-primary is-outlined" id="nav-signup" href="/signup">
+                <span class="icon is-small">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </span>
+                <span>Sign up</span>
+              </a>
+              {{/if}}
+            </div>
           </div>
         </div>
-        <p class="control">
-          <button type="submit" class="button is-primary" id="horror-search-button">Search</button>
-        </p>
-
       </div>
+    </nav>
+  </header>
+<!-- main -->
+  <main>
+    <div class="container mt-1 alert-box is-fluid is-hidden">
+      <div class="notification has-text-centered">
+        <button class="delete" id="dismiss-notification-btn"></button>
+        <span class="alert-text">Test alert for the user.</span>
       </div>
-
-      </div>
-    </section>
-
-    <!-- search history -->
-
-    <!-- first bottom container on left -->
-    <section class="section" id="card-section" style="justify-content: space-evenly; background-color: rgb(0, 0, 0)" ;>
-      <div class="columns">
-        <!-- <div class="column box m-1 p-3 is-one-third past-searches">
-          <h2 class="title is-5" ; style="text-align: center">
-            Recent Ingredient Searches
-          </h2>
-          <div id="search-history-container"></div>
-        </div> -->
-        <div class="columns pl-6">
-          <!-- start of new card here  -->
-          <div class="card column box m-1 p-3">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img alt="Image of first movie" id="movie1-img" />
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="Movie title is-5" id="Movie1-name">
-                    Movie 1 Title - Description?
-                  </p>
-                </div>
-              </div>
-
-              <div class="content">
-                <p class="Movie1 title is-6">details:</p>
-                <ul>
-                  <li id="movie1-ing1">test 1</li>
-                  <li id="movie1-ing2">test 2</li>
-                  <li id="movie1-ing3"></li>
-                  <li id="movie1-ing4"></li>
-                  <li id="movie1-ing5"></li>
-                  <li id="movie1-ing6"></li>
-                  <li id="movie1-ing7"></li>
-                  <li id="movie1-ing8"></li>
-                </ul>
-                <br>
-                <p class="Movie1 title is-6">Extra Info like where to find?:</p>
-                <p id="Movie1-details">
-                  Details here.</p>
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="card column box m-1 p-3">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img alt="Image of second movie" id="movie2-img" />
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="Movie title is-5" id="Movie2-name">
-                    Movie 2 Title - Description?
-                  </p>
-                </div>
-              </div>
-
-              <div class="content">
-                <p class="Movie2 title is-6">details:</p>
-                <ul>
-                  <li id="movie2-ing1">test 1</li>
-                  <li id="movie2-ing2">test 2</li>
-                  <li id="movie2-ing3"></li>
-                  <li id="movie2-ing4"></li>
-                  <li id="movie2-ing5"></li>
-                  <li id="movie2-ing6"></li>
-                  <li id="movie2-ing7"></li>
-                  <li id="movie2-ing8"></li>
-                </ul>
-                <br>
-                <p class="Movie2 title is-6">Extra Info like where to find?:</p>
-                <p id="Movie2-details">
-                  Details here.</p>
-              </div>
-
-            </div>
-          </div>
-
-
-          <div class="card column box m-1 p-3">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img alt="Image of second movie" id="movie3-img" />
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="Movie title is-5" id="Movie3-name">
-                    Movie 3 Title - Description?
-                  </p>
-                </div>
-              </div>
-
-              <div class="content">
-                <p class="Movie1 title is-6">details:</p>
-                <ul>
-                  <li id="movie3-ing1">test 1</li>
-                  <li id="movie3-ing2">test 2</li>
-                  <li id="movie3-ing3"></li>
-                  <li id="movie3-ing4"></li>
-                  <li id="movie3-ing5"></li>
-                  <li id="movie3-ing6"></li>
-                  <li id="movie3-ing7"></li>
-                  <li id="movie3-ing8"></li>
-                </ul>
-                <br>
-                <p class="Movie3 title is-6">Extra Info like where to find?:</p>
-                <p id="Movie3-details">
-                  Details here.</p>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-
-    </section>
+    </div>
+    <div class="is-flex is-flex-direction-column">
+      {{{ body }}}
+    </div>
   </main>
+  
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/menu.js"></script>
   <script src="/js/search.js"></script>
   {{#if loggedIn}}
@@ -191,6 +149,5 @@
   {{/if}}
   <script src="/js/alert-box.js"></script>
 </html>
-  <!-- <script src="./"></script> -->
 </body>
 

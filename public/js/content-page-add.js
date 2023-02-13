@@ -1,12 +1,12 @@
+// for displaying dropdown menu
 $(document).ready(function () {
     $("#add-list-dropdown-btn").click(function () {
         $(".dropdown").toggleClass("is-active")
     });
   });
-  //function addToWatchlist 
+
   async function addToWatchlist(event) {
     event.preventDefault();
-  
     const loc = window.location.toString().split('/');
     const type = loc[loc.length - 2];
     const id = loc[loc.length - 1];
@@ -15,6 +15,7 @@ $(document).ready(function () {
     const year = document.querySelector('span.release-date').textContent.split('/')[2];
     const status = $(this).attr('data-watch-status');
     try {
+        // attempts to post this data using the watchlist api
         const response = await fetch('/api/watchlist', {
             method: 'POST',
             body: JSON.stringify({
@@ -38,6 +39,6 @@ $(document).ready(function () {
         console.log(err);
     }
   }
-  //Event listen for on.click
+  
   $('.watchlist-dropdown-menu').on('click', '.watch-status-btn', addToWatchlist);
   

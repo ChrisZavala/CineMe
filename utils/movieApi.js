@@ -3,12 +3,7 @@
 
 //using axios meets our use of a new technology 
 const axios = require('axios').default; 
-var posters = 'https://image.tmdb.org/t/p/w500';  
-
-function searchContent(query, type) {
-    var apiUrl = 'https://api.themoviedb.org/3/search/' + type + '?api_key=' + process.env.apiKEY + '&query=' + query;
-    return axios(apiUrl)
-}
+var posters = 'https://image.tmdb.org/t/p/w500';   
 
 function searchContent(query, type) {
     var apiUrl = 'https://api.themoviedb.org/3/search/' + type + '?api_key=' + process.env.apiKEY + '&query=' + query;
@@ -75,5 +70,10 @@ function createContent(data, type) {
     return contentObj;
 }
 
+
+function searchContent(query, type) {
+    var apiUrl = 'https://api.themoviedb.org/3/search/' + type + '?api_key=' + process.env.apiKEY + '&query=' + query;
+    return axios(apiUrl)
+}
 //export time
 module.exports = { searchContent, getContentData, getTopData, getPopData, createContent,getActionData, getComedyData, getRomanceData }

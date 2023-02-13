@@ -1,6 +1,6 @@
 //loginFormHandler()
   //This is the function that get the user to log in 
-  async function loginFormHandler(event) {
+  async function loginFormHandler(event){
     event.preventDefault();
   
     // Collect values from the login form
@@ -10,7 +10,7 @@
     if (username && password) {
       // Send a POST request to the API endpoint
       const response = await fetch('/api/users/login', {
-        method: 'POST',
+        method: 'post',
         body: JSON.stringify({ username, password }),
         headers: { 'Content-Type': 'application/json' },
       });
