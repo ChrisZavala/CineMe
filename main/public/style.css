@@ -31,3 +31,10 @@
 .media {
     justify-content: center
 } */
+
+.carousel {
+    display: flex;
+    height: 30vh;
+    /* width: 15vw; */
+    width: 400px;
+}
