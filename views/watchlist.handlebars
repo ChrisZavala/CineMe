@@ -1,35 +1,36 @@
-// Created container and added a heading that will display the movie title 
-<div class="container my-5">
-  <h1 class="text-center">{{content_title}}</h1>
-  // Table head w/ headers for each field
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>User ID</th>
-        <th>Content ID</th>
-        <th>Content Type</th>
-        <th>Content Title</th>
-        <th>Poster Path</th>
-        <th>Release Year</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    // Table body that loops through each watchlist item
-    <tbody>
-      {{#each Watchlist}}
-      <tr>
-        <td>{{id}}</td>ß
-        <td>{{user_id}}</td>
-        <td>{{content_id}}</td>
-        <td>{{content_type}}</td>
-        <td>{{content_title}}</td>
-        <td>{{poster_path}}</td>
-        <td>{{release_year}}</td>
-        <td>{{status}}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+{{!-- container for testing backgrounds for page --}}
+<div class="cm-bg-height watchlist-container">
+    {{!-- Plan To Watch Section --}}
+    <section id="plan-to-watch-section" class="section custom-section py-4">
+        <h2 class="has-text-light is-size-3 is-size-4-touch mb-3 has-text-weight-bold">Future Watchlist</h2>
+        <ul id="plan-to-watch-list" class="list-container card-container" data-status-list="0">
+            {{#each plan_to_watch as |content-info|}}
+            {{> watchlist-cards content-info }}
+            {{/each}}
+        </ul>
+    </section>
+
+    <!-- Watching Section-->
+    <section id="watching-section" class="section custom-section py-4">
+        <h2 class="has-text-light is-size-3 is-size-4-touch mb-3 has-text-weight-bold">Currently Watching</h2>
+        <ul id="watching-list" class="list-container card-container" data-status-list="1">
+            {{#each watching as |content-info|}}
+            {{> watchlist-cards content-info }}
+            {{/each}}
+        </ul>
+    </section>
+
+    <!-- Completed Section-->
+    <section id="completed-section" class="section custom-section py-4">
+        <h2 class="has-text-light is-size-3 is-size-4-touch mb-3 has-text-weight-bold">Recently Watched</h2>
+        <ul id="completed-list" class="list-container card-container" data-status-list="2">
+            {{#each completed as |content-info|}}
+            {{> watchlist-cards content-info }}
+            {{/each}}
+        </ul>
+    </section>
 </div>
+
+{{#if loggedIn}}
 <script src="/js/watchlist.js"></script>
+{{/if}}

@@ -1,10 +1,7 @@
 const alertBox = $('.alert-box');
 const alertText = $('.alert-text');
-
 let alertTimeout;
-
-// displays the alert
-function updateAlertBox(message) {
+function updateAlert(message) {
     if (!message) {
         message = 'An error has occurred. Please try again.';
     }
@@ -17,8 +14,7 @@ function updateAlertBox(message) {
         alertBox.addClass('is-hidden');
     }, 5000);
 }
-
-// listener shela
+// listener shelia
 $('#dismiss-notification-btn').on('click', function () {
     if (alertTimeout) {
         clearTimeout(alertTimeout);
