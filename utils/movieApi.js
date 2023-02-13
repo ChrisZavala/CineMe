@@ -1,5 +1,6 @@
 //declare vars:
 //getting our movie poster from tmdb if the quality is as good might use other site:
+
 const axios = require('axios').default; 
 var posters = 'https://image.tmdb.org/t/p/w500';    
 

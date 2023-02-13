@@ -37,10 +37,10 @@ router.get('/', async (req, res) => {
 });
 //get movie/:id
 router.get("/movie/:id", (req, res) => {
-    createsContent(req, res, 'movie', req.params.id);
+    createsContentPage(req, res, 'movie', req.params.id);
 });
 
-async function createsContent(req, res, type, id) {
+async function createsContentPage(req, res, type, id) {
     try {
         let dataQuery = await Promise.all([
             getContentData(type, id),
