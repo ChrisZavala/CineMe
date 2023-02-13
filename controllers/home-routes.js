@@ -5,7 +5,7 @@ const axios = require('axios').default;
 const sequelize = require('../config/connection');
 
 //getting all data variables: 
-const { getContentData, getPopData, getTopData, createContent, searchContent,
+const { getContentData, getPopData, getTopData, createContent, searchContent, getActionData, getComedyData, getRomanceData
 } = require("../utils/movieApi");
 const { User, Watchlist, Comment, Poll} = require('../models');
 
@@ -15,6 +15,9 @@ router.get('/', async (req, res) => {
         const getContentData = await Promise.all([
             getPopData("movie"),
             getTopData("movie"),
+            getActionData("movie"),
+            getComedyData("movie"),
+            getRomanceData("movie"),
         ]);
         for (let x = 0; x < getContentData.length; x++) {
             for (let y = 0; y < getContentData[x].data.results.length; y++) {
@@ -28,6 +31,9 @@ router.get('/', async (req, res) => {
         res.render("homepage", {
             popMovies: getContentData[0].data.results,
             topMovies: getContentData[1].data.results,
+            actionMovies: getContentData[2].data.results,
+            comedyMovies: getContentData[3].data.results,
+            romanceMovies: getContentData[4].data.results,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {
@@ -37,10 +43,10 @@ router.get('/', async (req, res) => {
 });
 //get movie/:id
 router.get("/movie/:id", (req, res) => {
-    createsContentPage(req, res, 'movie', req.params.id);
+    createsContent(req, res, 'movie', req.params.id);
 });
 
-async function createsContentPage(req, res, type, id) {
+async function createsContent(req, res, type, id) {
     try {
         let dataQuery = await Promise.all([
             getContentData(type, id),
@@ -74,10 +80,25 @@ async function createsContentPage(req, res, type, id) {
               })
             ]);
         const content = createContent(dataQuery[0].data);
+        const poll = dataQuery[1].map((entry) => entry.get({plain: true}));
+        let avg_rating = poll[0].avg_rating ? poll[0].avg_rating : 0;
+        avg_rating = parseFloat(avg_rating).toPrecision(2);
+        let user_rating;
+        if(dataQuery[2]) {
+            const rating = dataQuery[2].get({plain: true});
+            user_rating = {
+                rated: true, 
+                rating: rating.rating
+            }
+        }
+
         const comments = dataQuery[3].map((entry) => entry.get({ plain: true }));
         res.render("content-page", {
             content,
             comments,
+            avg_rating,
+            user_rating,
+            user_pfp: req.session.pfp_path,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {
@@ -96,42 +117,46 @@ router.get('/watchlist', async (req, res) => {
     }
 });
 //get /watchlist/:id getting our status. Thanks to Rick for setting this in the models
-router.get('/watchlist/:id', async (req, res) => {
+// route for the watchlist for the specific user id
+router.get("/watchlist/:id", async (req, res) => {
     try {
-        const db = await Promise.all([
-            User.findByPk(req.params.id, { attributes: { exclude: ['password'] } }),
-            Watchlist.findAll({ where: { user_id: req.params, status: 0 } }),
-            Watchlist.findAll({ where: { user_id: req.params, status: 1 } }),
-            Watchlist.findAll({ where: { user_id: req.params, status: 2 } }),
-        ]);
-        if (!db[0]) {
-            //more handlebar calls here
-            res.render('404-page', { message: "No id found!" });
-            return;
+      // query to get all the content in the watchlist for this id, a query for each status type
+      const dbQuery = await Promise.all([
+        User.findByPk(req.params.id, { attributes: { exclude: ["password"] } }),
+        Watchlist.findAll({ where: { user_id: req.params.id, status: 0 } }),
+        Watchlist.findAll({ where: { user_id: req.params.id, status: 1 } }),
+        Watchlist.findAll({ where: { user_id: req.params.id, status: 2 } }),
+      ]);
+      // if the user does not exist
+      if (!dbQuery[0]) {
+        res.render("404-page", { message: "No user found with this id" });
+        return;
+      }
+      // tells whether this is the page for the current user or not
+      const currentUser = (req.session.loggedIn) ? req.session.user_id == req.params.id : false;
+      let watchlist = [];
+      // sets the different watchlist elements and specifies whether user is the owner of the watchlist
+      for (let x = 1; x < dbQuery.length; x++) {
+        watchlist.push(dbQuery[x].map((entry) => entry.get({ plain: true })));
+        for (let y = 0; y < watchlist[x - 1].length; y++) {
+          watchlist[x - 1][y].currentUser = currentUser
         }
-        const currentUser = (req.session.loggedIn) ? req.session.user_id == req.params.id : false;
-        let watchlist = [];
-        for (let x = 1; x < db.length; x++) {
-            watchlist.push(db[x].map((entry) => entry.get({ plain: true })));
-            for (let y = 1; y < watchlist[x - 1].length; y++) {
-                watchlist[x - 1][y].currentUser = currentUser
-            }
-        }
+      }
 
         //going to handlebars page to render watchlist if they are this user or different user
         //handlebars call
-        res.render('watchlist', {
-            futureWatch: watchlist[0],
-            currentlyWatching: watchlist[1],
-            finished: watchlist[2],
+        res.render("watchlist", {
+            plan_to_watch: watchlist[0],
+            watching: watchlist[1],
+            completed: watchlist[2],
             loggedIn: req.session.loggedIn,
             currentUser
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
+          });
+        } catch (err) {
+          console.log(err);
+          res.status(500).json(err);
+        }
+      });
 
 //When the user is 'loggedIn' will go to the homepage
 //get /login
@@ -154,24 +179,24 @@ router.get("/signup", (req, res) => {
 
 //Our search engine. 
 //get /search/:type/:query
-router.get('/search/:type/:query', async (req, res) => {
+router.get("/search/:type/:query", async (req, res) => {
     try {
-        const query = req.params.query.split('+').join("");
-        let type = req.params.type === "movie";
-        const searchDB = await searchContent(query, type);
-        for (let y = 0; y < searchDB.data.results.length; y++) {
-            searchDB.data.results[y] = createContent(searchDB.data.results[y]);
-        }
-        //Handlebars call here:
-        res.render('search', {
-            searchContent: searchDB.data.results, 
-            loggedIn: req.session.loggedIn
-        });
+     
+      const query = req.params.query.split("+").join(" ");
+      let type = req.params.type === "movie" ? "movie" : "tv";
+      const searchData = await searchContent(query, type);
+      for (let y = 0; y < searchData.data.results.length; y++) {
+        searchData.data.results[y] = createContent(searchData.data.results[y]);
+      }
+      res.render("search", {
+        searchContent: searchData.data.results,
+        loggedIn: req.session.loggedIn,
+      });
     } catch (err) {
-        console.log(err);
-        res.render('404-page');
+      console.log(err);
+      res.render("404-page");
     }
-});
-
+  });
+  
 //Export time Shelia
 module.exports = router;
