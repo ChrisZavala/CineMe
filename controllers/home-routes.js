@@ -183,7 +183,7 @@ router.get("/search/:type/:query", async (req, res) => {
     try {
      
       const query = req.params.query.split("+").join(" ");
-      let type = req.params.type === "movie" ? "movie" : "tv";
+      let type = req.params.type === "movie" ? "movie" : null;
       const searchData = await searchContent(query, type);
       for (let y = 0; y < searchData.data.results.length; y++) {
         searchData.data.results[y] = createContent(searchData.data.results[y]);
@@ -192,6 +192,9 @@ router.get("/search/:type/:query", async (req, res) => {
         searchContent: searchData.data.results,
         loggedIn: req.session.loggedIn,
       });
+      //this returns a 404 if you type alsdfjsfljd in search
+      if(!searchData[y])
+      res.render("404-page");
     } catch (err) {
       console.log(err);
       res.render("404-page");
