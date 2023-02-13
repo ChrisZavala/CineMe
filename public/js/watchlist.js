@@ -1,11 +1,10 @@
 function cardClickHandler(event) {
     event.preventDefault();
-
-    // gets the movie card when the button is clicked on the card,  id in db will pull from attr.
+    // gets the card that the button was clicked on and the id in the database from the attribute
     const card = $(this).closest('.content-card');
     const id = card.attr('data-watchlist-id');
     // if the button was a remove-button, then it will call the function to delete the item
-    // or it will just update status
+    // otherwise it will call the function to update the status
     if ($(this).hasClass('remove-button')) {
         removeFromWatchlist(card, id);
     } else {
@@ -13,7 +12,7 @@ function cardClickHandler(event) {
         changeWatchStatus(card, id, newStatus);
     }
 }
-// function to update status of movie watchlist either currently watching, will watch, or completed. 
+// function to update the status of the specified content for the user
 async function changeWatchStatus(card, id, status) {
     try {
         const response = await fetch('/api/watchlist/' + id, {
@@ -27,26 +26,8 @@ async function changeWatchStatus(card, id, status) {
         });
         if (response.ok) {
             // if the api call was successful, the card will be moved to the appropriate container
-            //handlebars look here for this 
             card.appendTo($('ul.card-container[data-status-list="' + status + '"]'));
         } else {
-            updateAlertBox();
-        }
-    } catch (err) {
-        updateAlertBox();
-    }
-}
-//here is our delete from the watchlist function 
-async function removeFromWatchlist(card, id) {
-    try {
-        const response = await fetch('/api/watchlist' + id, {
-            method: 'DELETE',
-        });
-        if(!response.ok) {
-            card.slideUP(100, function () {
-                $(this).remove();
-            })
-        }else{
             updateAlertBox();
         }
     } catch (err) {
@@ -54,5 +35,30 @@ async function removeFromWatchlist(card, id) {
         console.log(err);
     }
 }
-//Event Listener for click on the card
-$('.watchlist-container').on('click', cardClickHandler);
+// function to delete the specified content for the user
+async function removeFromWatchlist(card, id) {
+    try {
+        const response = await fetch('/api/watchlist/' + id, {
+            method: 'DELETE',
+        });
+        if (response.ok) {
+            // if the api call was successful the card will have a small scroll up animation and then be removed from the page
+            card.slideUp(250, function () {
+                $(this).remove();
+            })
+        } else {
+            updateAlertBox();
+        }
+    } catch (err) {
+        updateAlertBox();
+        console.log(err);
+    }
+}
+// function to display card dropdown menu
+$(document).ready(function () {
+    $(".card-dropdown-btn").on('click', function () {
+        $(this).toggleClass("is-active")
+    });
+});
+// listener for when one of the drop down options is clicked
+$('.watchlist-container').on('click', '.watch-dropdown-btn', cardClickHandler);
