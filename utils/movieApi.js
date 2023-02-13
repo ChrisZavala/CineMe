@@ -1,17 +1,20 @@
 //declare vars:
 //getting our movie poster from tmdb if the quality is as good might use other site:
 
+//using axios meets our use of a new technology 
 const axios = require('axios').default; 
-var posters = 'https://image.tmdb.org/t/p/w500';    
+var posters = 'https://image.tmdb.org/t/p/w500';  
 
 function searchContent(query, type) {
     var apiUrl = 'https://api.themoviedb.org/3/search/' + type + '?api_key=' + process.env.apiKEY + '&query=' + query;
     return axios(apiUrl)
 }
-function getCategoryData(type) {
-    var apiUrl = 'https://api.themoviedb.org/3/genre/' + type + '/list?api_key' + process.env.apiKey + '&language=en-US';
-    return query(apiUrl);
+
+function searchContent(query, type) {
+    var apiUrl = 'https://api.themoviedb.org/3/search/' + type + '?api_key=' + process.env.apiKEY + '&query=' + query;
+    return axios(apiUrl)
 }
+
 function getContentData(type, id) {
     var apiUrl = 'https://api.themoviedb.org/3/' + type + '/' + id + '?api_key=' + process.env.apiKEY + '&language=en-US';
     console.log(apiUrl);
@@ -25,6 +28,20 @@ function getPopData(type) {
 
 function getTopData(type) {
     var apiUrl = 'https://api.themoviedb.org/3/' + type + '/top_rated?api_key=' + process.env.apiKEY + '&language=en-US';
+    return axios(apiUrl);
+}
+function getActionData(type) {
+    var apiUrl ='https://api.themoviedb.org/3/discover/movie' + '?api_key=' + process.env.apiKEY + '&with_genres=28';
+    return axios(apiUrl);
+}
+
+function getComedyData(type) {
+    var apiUrl ='https://api.themoviedb.org/3/discover/movie' + '?api_key=' + process.env.apiKEY + '&with_genres=35';
+    return axios(apiUrl);
+}
+
+function getRomanceData(type) {
+    var apiUrl ='https://api.themoviedb.org/3/discover/movie' + '?api_key=' + process.env.apiKEY + '&with_genres=10749';
     return axios(apiUrl);
 }
 
@@ -46,7 +63,6 @@ function createContent(data, type) {
     } else {
         contentObj.release = '00/00/0000';
     }
-    // formats the genres to a simple array or sets to None
     if (data.genres) {
         let genres = [];
         data.genres.forEach(function (genre) {
@@ -58,5 +74,6 @@ function createContent(data, type) {
     }
     return contentObj;
 }
+
 //export time
-module.exports = { searchContent, getContentData, getTopData, getPopData, createContent,getCategoryData }
+module.exports = { searchContent, getContentData, getTopData, getPopData, createContent,getActionData, getComedyData, getRomanceData }

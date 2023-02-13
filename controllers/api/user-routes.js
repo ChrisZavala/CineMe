@@ -43,6 +43,7 @@ router.get('/', async (req, res) => {
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
+        req.session.pfp_path = dbUserData.pfp_path;
         req.session.email = dbUserData.email;
         req.session.loggedIn = true;
 
