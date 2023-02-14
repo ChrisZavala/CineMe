@@ -4,6 +4,8 @@
   "description": "## Description    CineMe is an app the user will be able to personalize their watch list.",
   "main": "index.js",
   "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

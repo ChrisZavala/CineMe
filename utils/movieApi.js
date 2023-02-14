@@ -1,7 +1,7 @@
 //declare vars:
 //getting our movie poster from tmdb if the quality is as good might use other site:
 
-//using axios meets our use of a new technology 
+//using axios meets our use of a new technology much easier than using FETCH and more lines for just two lines and getting the api stuff. 
 const axios = require('axios').default; 
 var posters = 'https://image.tmdb.org/t/p/w500';   
 

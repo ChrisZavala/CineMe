@@ -77,6 +77,7 @@ router.get('/', async (req, res) => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.email = dbUserData.email;
+        req.session.pfp_path = dbUserData.pfp_path;
         req.session.loggedIn = true;
         res.json({ user: dbUserData, message: "You are logged in!" });
         });
@@ -117,6 +118,8 @@ router.get('/', async (req, res) => {
         }
       });
       req.session.username = (req.body.username) ? req.body.username : req.session.username;
+      //needed this to update pic
+      req.session.pfp_path = (req.body.pfp_path) ? req.body.pfp_path : req.session.pfp_path;
       req.session.email = (req.body.email) ? req.body.email : req.session.email;
       res.json(dbUserData);
     } catch (err) {
