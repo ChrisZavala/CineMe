@@ -36,7 +36,7 @@ async function ratingHandler(event) {
   const content_type = loc[loc.length - 2];
   let method = rated ? 'PUT' : 'POST';
   try {
-    const response = await fetch('/api/votes', {
+    const response = await fetch('/api/poll', {
       method,
       body: JSON.stringify({
         content_type,
