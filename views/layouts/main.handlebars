@@ -15,10 +15,12 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="is-flex is-flex-direction-column has-background-dark">
+
+
+<body class="is-flex is-flex-direction-column has-background-black">
   <header>
     <!-- navigation -->
-    <nav class="navbar is-fixed-top is-black" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-fixed-top bg-warning" role="navigation" aria-label="main navigation">
       <div class="navbar-brand px-3">
         <a class="navbar-item" href="/">
           <h1 class="has-text-weight-bold is-size-4 is-size-5-touch" id="nav-logo">
@@ -52,7 +54,7 @@
         </div>
         <div class="control">
           <button class="button is-info is-rounded" type="submit" id="search">
-            <span class="icon">
+            <span class="icon bg-primary">
               <i class="fa-solid fa-magnifying-glass fa-lg"></i>
             </span>
           </button>
@@ -107,13 +109,13 @@
                 <span>Logout</span>
               </button>
               {{else}}
-              <a class="button is-info is-outlined" id="nav-login" href="/login">
+              <a class="button is-info is-outlined bg-primary has-text-white" id="nav-login" href="/login">
                 <span class="icon is-small">
                   <i class="fa-solid fa-arrow-right-to-bracket"></i>
                 </span>
                 <span>Login</span>
               </a>
-              <a class="button is-primary is-outlined" id="nav-signup" href="/signup">
+              <a class="button is-primary is-outlined bg-light has-text-link" id="nav-signup" href="/signup">
                 <span class="icon is-small">
                   <i class="fa-solid fa-pen-to-square"></i>
                 </span>
