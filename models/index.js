@@ -2,7 +2,7 @@
 const User = require('./User');
 const Watchlist = require('./Watchlist');
 const Comment = require('./Comment');
-const Poll = require('./poll');
+const Poll = require('./Poll');
 
 User.hasMany(Poll, {
     foreignKey: 'user_id'
