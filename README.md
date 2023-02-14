@@ -81,7 +81,13 @@ SOFTWARE.
 
   ## Video Link inserted here:
 
- 
+  ## Wireframe
+  ![WireFrame](./public/assets/Screen%20Shot%202023-02-14%20at%203.04.35%20PM.png)
+  ![WireFrame](./public/assets/Screen%20Shot%202023-02-14%20at%203.06.48%20PM.png)
+  ![WireFrame](./public/assets/Screen%20Shot%202023-02-14%20at%203.05.56%20PM.png)
+ ![WireFrame](./public/assets/Screen%20Shot%202023-02-14%20at%202.51.33%20PM.png)
+
+
   ## Screenshots:
 
 
