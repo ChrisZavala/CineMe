@@ -6,23 +6,17 @@ const withAuth = require('../utils/auth');
 //get / async/await
 router.get('/', withAuth, async (req, res) => {
     try {
-        const commentData = await Comment.findAll({
+        const userData = await User.findOne({
             where: {
-                user_id: req.session.user_id
+                id: req.session.user_id
             },
-            attributes: [
-                'id',
-                'comment_text',
-                'user_id',
-                'content_type',
-                'createdAt'
-            ],
-            include: [{ model: User, attributes: { exclude: ['password']}}]
+            include: [{ model: Comment }]
         });
-        const comments = commentData.map(comment => comment.get({plain: true}));
+        const user = userData.get({plain: true}) ;
         const username = req.session.username;
         const email = req.session.email;
-        res.render('dashboard', { comments, username, email, loggedIn: true}); 
+        console.log(user);
+        res.render('dashboard', { user, username, email, loggedIn: true}); 
     } catch (err) {
         res.status(500).json(err);
         

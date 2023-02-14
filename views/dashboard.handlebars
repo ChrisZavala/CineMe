@@ -9,13 +9,13 @@
         <article class="media">
             <figure class="media-left my-auto has-text-centered mx-3 px-1">
                 {{!-- container for user profile image --}}
-                <div class="is-size-3">{{username}}</div>
+                <div class="is-size-3">{{user.username}}</div>
                 <br>
                 <p class="image">
-                    <img class="is-rounded dashboard-pfp-picture mx-auto" src="{{user_pfp}}">
+                    <img class="is-rounded dashboard-pfp-picture mx-auto" src="{{user.pfp_path}}">
                 </p>
                 <br>
-                <div>{{email}}</div>
+                <div>{{user.email}}</div>
             </figure>
             <div class="container">
                 <form class="update-user-form" autocomplete="off">
@@ -66,9 +66,30 @@
 {{!-- All user comments --}}
 <section id="comment-section" class="custom-bg-color has-text-white">
     <p class="has-text-weight-semibold">Comment Section</p>
-    {{#each comments as |comment|}}
+    {{#each user.comments}}
     {{!-- container for each comment --}}
-    {{> dashcomments comment}}
+    <article class="media">
+    <figure class="media-left">
+        <p class="image is-96x96">
+            {{!-- container for user profile image --}}
+            <img class="is-rounded" src="{{../user.pfp_path}}">
+        </p>
+    </figure>
+    <div class="media-content">
+        <div class="content">
+            <p class="has-text-grey-lighter">
+                <strong class="has-text-info">{{username}}</strong>
+                <small>{{format_date createdAt}}</small>
+                <br>
+                {{comment_text}}
+                <br>
+                <a href="/{{content_type}}/{{content_id}}">
+                    <small>Go to {{content_type}} page</small>
+                </a>
+            </p>
+        </div>
+    </div>
+</article>
     {{/each}}
 </section>
 <script src="/js/user-update.js"></script>
