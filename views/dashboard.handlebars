@@ -5,7 +5,7 @@
 {{!-- Change user profile functionality --}}
 <section id="profile-section" class="columns is-centered">
     <div class="column is-three-fifths custom-bg-color has-text-white" id="profile-container">
-        <h2>Profile</h2>
+        <h2 id="dash-pro">Profile</h2>
         <article class="media">
             <figure class="media-left my-auto has-text-centered mx-3 px-1">
                 {{!-- container for user profile image --}}
@@ -65,7 +65,7 @@
 
 {{!-- All user comments --}}
 <section id="comment-section" class="custom-bg-color has-text-white">
-    <p class="has-text-weight-semibold">Your Comments</p>
+    <p class="has-text-weight-semibold">Comment Section</p>
     {{#each comments as |comment|}}
     {{!-- container for each comment --}}
     {{> dashcomments comment}}
