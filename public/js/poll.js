@@ -1,6 +1,7 @@
+//declare variables. Bulma really like giving stars but we want pickles. 
 const pollAwards = $('div.control.star');
 let rated = false;
-let starDefault;
+let pickleDefault;
 
 //function to start the ratings, polling the user what they like for given stars, thumbs up, pickles, don't know what we are choosing. Front end hasn't decided.  
 //we originally want to use Rotten Tomatoes but they are nice about giving them out for api reasons
@@ -8,7 +9,7 @@ function pollRating(event) {
   var id = $(this).attr("id");
   removeAllRatings();
   
-  let stars = id ? id : starDefault;
+  let stars = id ? id : pickleDefault;
   addPoll(stars);
 }
 //function to add stars from rating on movie card
@@ -24,8 +25,8 @@ function removeAllRatings() {
 //function to remove star from rating on movie card
 function pollRemove(event) {
     removeAllRatings();
-    if (starDefault) {
-      addPoll(starDefault);
+    if (pickleDefault) {
+      addPoll(pickleDefault);
     }
   }
 // function to handle the ratings 
@@ -36,6 +37,7 @@ async function ratingHandler(event) {
   const content_type = loc[loc.length - 2];
   let method = rated ? 'PUT' : 'POST';
   try {
+    //try not to write this response at 2am in the morning a typo here really messed you up to be able to keep the pickles up. 
     const response = await fetch('/api/poll', {
       method,
       body: JSON.stringify({
@@ -61,7 +63,7 @@ $(".fa-star").on("mouseout", pollRemove);
 $(".fa-star").on("click", ratingHandler);
 
 if (pollAwards.attr('data-user-rated')) {
-  starDefault = parseInt(pollAwards.attr('data-user-rating'));
+  pickleDefault = parseInt(pollAwards.attr('data-user-rating'));
   rated = true;
   pollRating();
 }
