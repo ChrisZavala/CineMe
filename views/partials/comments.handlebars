@@ -1,7 +1,7 @@
 {{!-- container for each comment --}}
 <article class="media">
     <figure class="media-left">
-        <p class="image is-48x48">
+        <p class="image is-96x96">
             {{!-- container for user profile image --}}
             <img class="is-rounded" src="{{user.pfp_path}}">
         </p>
@@ -10,7 +10,9 @@
         <div class="content">
             <p class="has-text-grey-lighter">
                 <a href="/watchlist/{{user.id}}"><strong class="has-text-info">{{user.username}}</strong></a>
-                <small>{{format_date createdAt}}</small>
+                <br>
+    
+                <div><small>{{format_date createdAt}}</small></div>
                 <br>
                 {{comment_text}}
                 <br>

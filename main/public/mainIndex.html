@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineMe Movie Finder</title>
+  <!-- <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" /> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="./assets/CSS/style.css" /> -->
+  <link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+				
+</head>
+
+<body class="body">
+
+  <header class="hero" style="background-color: rgb(0, 0, 0)";>
+    <div class="container" style="width: fit-content;">
+      <!-- <h1 class="title is-1 has-text-white">TOP (HORROR) MOVEIS!</h1> -->
+
+
+      <section class="section">
+        <div class="container">
+          <!-- Label above search bar  -->
+          <!-- <div class="row m-0"> -->
+          <p for="search-input" id="genre-text" class="search-label hide-intro m-5 title is-4 has-text-white">PICK A GENRE HERE! </p>
+        </div>
+        <!-- Ingredient search label input and button-->
+        <div class="container field has-addons">
+          <div class="control is-expanded">
+            <div class="select is-primary is-fullwidth">
+              <select name="select your genre" id="genreDropdown">
+                <option value="" selected disabled>Select your Genre</option>
+                <option value="Horror" id="nav-pop-mov" href="/#popular-movies-section">Popular</option>
+                <option value="Action" id="nav-pop-mov" href="/#top-movies-section">Top Rated</option>
+                <option value="Comedy" id="nav-pop-mov" href="/#action-movies-section">Action</option>
+                <option value="Adventure" id="nav-pop-mov" href="/#comedy-movies-section">Comedy</option>
+                <option value="Romance" id="nav-pop-mov" href="/#romance-movies-section">Romance</option>
+              </select>
+            </div>
+          </div>
+          <p class="control">
+            <button type="submit" class="button is-primary" id="horror-search-button">Search</button>
+          </p>
+  
+        </div>
+        </div>
+  
+        </div>
+      </section>
+    </div>
+
+    
+  </header>
+
+  <div class="container">
+    <h1 class="title is-1 p-6">TOP (HORROR) MOVEIS!</h1>
+    </div>
+
+
+  <main>
+
+
+
+    <!-- search history -->
+
+    <!-- first bottom container on left -->
+    <section class="section" id="card-section" style="justify-content: space-evenly; background-color: rgb(0, 0, 0)" ;>
+      <div class="columns">
+        <!-- <div class="column box m-1 p-3 is-one-third past-searches">
+          <h2 class="title is-5" ; style="text-align: center">
+            Recent Ingredient Searches
+          </h2>
+          <div id="search-history-container"></div>
+        </div> -->
+        <div class="columns pl-6">
+          <!-- start of new card here  -->
+          <div class="card column box m-1 p-3">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img alt="Image of first movie" id="movie1-img" />
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="Movie title is-5" id="Movie1-name">
+                    Movie 1 Title - Description?
+                  </p>
+                </div>
+              </div>
+
+              <div class="content">
+                <p class="Movie1 title is-6">details:</p>
+                <ul>
+                  <li id="movie1-ing1">test 1</li>
+                  <li id="movie1-ing2">test 2</li>
+                  <li id="movie1-ing3"></li>
+                  <li id="movie1-ing4"></li>
+                  <li id="movie1-ing5"></li>
+                  <li id="movie1-ing6"></li>
+                  <li id="movie1-ing7"></li>
+                  <li id="movie1-ing8"></li>
+                </ul>
+                <br>
+                <p class="Movie1 title is-6">Extra Info like where to find?:</p>
+                <p id="Movie1-details">
+                  Details here.</p>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="card column box m-1 p-3">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img alt="Image of second movie" id="movie2-img" />
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="Movie title is-5" id="Movie2-name">
+                    Movie 2 Title - Description?
+                  </p>
+                </div>
+              </div>
+
+              <div class="content">
+                <p class="Movie2 title is-6">details:</p>
+                <ul>
+                  <li id="movie2-ing1">test 1</li>
+                  <li id="movie2-ing2">test 2</li>
+                  <li id="movie2-ing3"></li>
+                  <li id="movie2-ing4"></li>
+                  <li id="movie2-ing5"></li>
+                  <li id="movie2-ing6"></li>
+                  <li id="movie2-ing7"></li>
+                  <li id="movie2-ing8"></li>
+                </ul>
+                <br>
+                <p class="Movie2 title is-6">Extra Info like where to find?:</p>
+                <p id="Movie2-details">
+                  Details here.</p>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="card column box m-1 p-3">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img alt="Image of second movie" id="movie3-img" />
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="Movie title is-5" id="Movie3-name">
+                    Movie 3 Title - Description?
+                  </p>
+                </div>
+              </div>
+
+              <div class="content">
+                <p class="Movie1 title is-6">details:</p>
+                <ul>
+                  <li id="movie3-ing1">test 1</li>
+                  <li id="movie3-ing2">test 2</li>
+                  <li id="movie3-ing3"></li>
+                  <li id="movie3-ing4"></li>
+                  <li id="movie3-ing5"></li>
+                  <li id="movie3-ing6"></li>
+                  <li id="movie3-ing7"></li>
+                  <li id="movie3-ing8"></li>
+                </ul>
+                <br>
+                <p class="Movie3 title is-6">Extra Info like where to find?:</p>
+                <p id="Movie3-details">
+                  Details here.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+    </section>
+  </main>
+
+
+
+
+  
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- <script src="./"></script> -->
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+<link href="./styles.js">
+				
+</body>
+
+</html>

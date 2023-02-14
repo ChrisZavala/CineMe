@@ -109,8 +109,8 @@
   
   /* Styling for profile pictures */
   .pfp-picture {
-    height: 48px !important;
-    width: 48px !important;
+    height: 100px !important;
+    width: 100px !important;
   }
   
   /* content-page START*/
@@ -212,8 +212,22 @@
   }
   
   #comment-section {
-    padding: 2rem 10rem 5rem 10rem;
+    padding: 1rem 5rem 5rem 5rem;
     transition: all ease-in-out 0.3s;
+    margin: 2rem;
+    box-shadow: inset 0 0 10px;
+
+
+  }
+
+  .has-text-weight-semibold {
+    text-align: center;
+    font-size: 15;
+  }
+
+  .has-text-grey-lighter {
+    margin-top: 1rem;
+    margin-left: 1rem;
   }
   
   .comment-number {
@@ -320,6 +334,14 @@
   
   #profile-container {
     border-radius: 1rem;
+    box-shadow: inset 0 0 10px;
+    padding-bottom: 2rem;
+  }
+
+  #dash-pro {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 50px;
   }
   
   .dashboard-pfp-picture {
@@ -532,3 +554,71 @@
         gap: 1rem 0rem;
     }
   }
+
+.image img {
+  
+  height: 100px;
+  width: 100px;
+}
+
+footer {
+  background-color: #1c1c1c;
+  height: 200px;
+}
+
+.footer-logo {
+  font-size: 55px;
+  line-height: 0.8;
+  text-align: center;
+  position: relative;
+  top: 33px;
+  text-shadow: 2px 2px 4px lightyellow;
+
+
+}
+
+.bubble {
+  position: relative;
+  background-color: black;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-top: 22px;
+  margin-left: 50px;
+  animation-name: footer;
+  animation-iteration-count: infinite;
+  animation-delay: -2s;
+  animation-duration: 5s;
+  box-shadow: 5px 5px 6px lightyellow;
+
+  
+}
+
+
+
+@keyframes footer {
+  0% {right: -50px;}
+  25% {right: 0px;}
+  50% {right: 50px;}
+  75% {right: 0px;}
+  100% {right: -50px;}
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 17px;
+  position: relative;
+  top: -134px;
+  color: lightyellow;
+  right: 150px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+letter-spacing: 3px;}
+
+.socials {
+  position: relative;
+  top: -260px;
+  font-size: 20px;
+  text-align: center;
+  color: lightyellow;
+  left: 590px;
+}
