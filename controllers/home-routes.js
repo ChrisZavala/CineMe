@@ -192,9 +192,10 @@ router.get("/search/:type/:query", async (req, res) => {
         searchContent: searchData.data.results,
         loggedIn: req.session.loggedIn,
       });
-      //this returns a 404 if you type alsdfjsfljd in search
-      // if(!searchData[y])
-      // res.render("404-page");
+      //  if(!searchData) {
+      //   res.render("404-page");
+      //  }
+      
     } catch (err) {
       console.log(err);
       res.render("404-page");
