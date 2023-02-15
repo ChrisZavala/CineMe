@@ -117,6 +117,12 @@ router.get('/', async (req, res) => {
           id: req.session.user_id
         }
       });
+<<<<<<< HEAD
+=======
+      req.session.username = (req.body.username) ? req.body.username : req.session.username;
+      req.session.pfp_path = (req.body.pfp_path) ? req.body.pfp_path : req.session.pfp_path;
+      req.session.email = (req.body.email) ? req.body.email : req.session.email;
+>>>>>>> 2e64909 (finalized styling homepage)
       res.json(dbUserData);
     } catch (err) {
       console.log(err);

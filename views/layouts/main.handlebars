@@ -12,14 +12,11 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" 
-  integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" 
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-  rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
-  crossorigin="anonymous">
-  <title>CineMe</title>
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -28,11 +25,10 @@
 <body class="is-flex is-flex-direction-column has-background-black">
   <header>
     <!-- navigation -->
-    <nav class="navbar is-fixed-top bg-warning" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand px-3">
+    <nav id="yellow-head" class="navbar is-fixed-top bg-warning" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
         <a class="navbar-item" href="/">
-          <h1 class="has-text-weight-bold is-size-4 is-size-5-touch" id="nav-logo">
-            CineMe
+          <h1 class="nav-logo is-size-4 is-size-5-touch" id="nav-logo"><span>CineMe</span>
           </h1>
         </a>
         <a role="button" class="navbar-burger m-0" aria-label="menu" aria-expanded="false"
@@ -44,6 +40,7 @@
       </div>
 
 <!-- search field -->
+   
       <form class="navbar-item navbar-search field has-addons mb-0 search-hide search-form">
         <div class="control">
           <span id="menu-search-filter" class="select is-rounded">
@@ -53,19 +50,21 @@
           </span>
         </div>
         <div class="control is-expanded">
-          <input class="input" type="text" placeholder="Use CineMe to Search for any Movie!" id="search-input" />
+          <input class="input" type="text" placeholder="Search for your favorite movie or actor/actress!" id="search-input" />
         </div>
         <div class="control">
           <button class="button is-info is-rounded" type="submit" id="search">
-            <span class="icon bg-primary">
+            <span class="icon">
               <i class="fa-solid fa-magnifying-glass fa-lg"></i>
             </span>
           </button>
         </div>
       </form>
+      
 
 
    <!-- navbar menu -->
+   
       <div class="navbar-menu">
         <div class="navbar-start">
           <div class="navbar-item has-dropdown is-hoverable">
@@ -91,6 +90,9 @@
               </a>
             </div>
           </div>
+         
+       
+          
          
         <div class="navbar-end">
           <a class="navbar-item has-text-centered" id="nav-pop-mov" href="/watchlist">
