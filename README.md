@@ -94,7 +94,7 @@ SOFTWARE.
 
 
   ## Screenshots of Project:
-![Homepage](./public/assets/Screen%20Shot%202023-02-14%20at%209.49.43%20PM.png)
+![Homepage](./public/assets/Screen%20Shot%202023-02-14%20at%2011.46.17%20PM.png)
 ![Login](./public/assets/Screen%20Shot%202023-02-14%20at%209.52.20%20PM.png)
 ![Signup](./public/assets/Screen%20Shot%202023-02-14%20at%209.53.29%20PM.png)
 ![Watchlist](./public/assets/Screen%20Shot%202023-02-14%20at%2010.00.09%20PM.png)
