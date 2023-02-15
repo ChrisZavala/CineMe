@@ -42,5 +42,11 @@ async function updateUserInfo(event) {
       updateAlertBox();
     }
   }
+function test() {
+  const source = document.getElementById("test-input").value
+  document.getElementById("img").src = source
+}
+
+document.getElementById("test-input").addEventListener("change", test)
   //event listener 
   $('.update-user-form').on('submit', updateUserInfo);
