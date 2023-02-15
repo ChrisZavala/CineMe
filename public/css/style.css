@@ -623,11 +623,12 @@ line-height: 2;
 
 .socials {
   position: relative;
-  top: -260px;
+  top: 65px;
   font-size: 20px;
   text-align: center;
-  color: lightyellow;
-  left: 590px;
+  color: #007bff;
+  left: 220px;
+  text-shadow: 1px 1px 3px;
 }
 
 #nav-dashboard, #nav-logout {
@@ -764,7 +765,7 @@ background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #f9f
   position: relative;
   top: -400px;
   left: 230px;
-  box-shadow: inset 3px 3px 10px 1px #ffc107;
+  box-shadow: 2px 4px 14px #ffc107;
   text-shadow: 2px 2px 40px;
   opacity: 80%;
 }
@@ -786,9 +787,12 @@ background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #f9f
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  top: -170px;
-  box-shadow: inset 1px 2px 1px 3px black;
+  position: absolute;
+  top: 949px;
+  left: 450px;
+  
+ 
+  box-shadow: 2px 2px 10px lightblue;
   
 }
 
