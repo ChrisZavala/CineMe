@@ -88,8 +88,17 @@ SOFTWARE.
  ![WireFrame](./public/assets/Screen%20Shot%202023-02-14%20at%202.51.33%20PM.png)
 
 
-  ## Screenshots:
 
+
+
+
+
+  ## Screenshots of Project:
+![Homepage](./public/assets/Screen%20Shot%202023-02-14%20at%209.49.43%20PM.png)
+![Login](./public/assets/Screen%20Shot%202023-02-14%20at%209.52.20%20PM.png)
+![Signup](./public/assets/Screen%20Shot%202023-02-14%20at%209.53.29%20PM.png)
+![Watchlist](./public/assets/Screen%20Shot%202023-02-14%20at%2010.00.09%20PM.png)
+![Dashboard](./public/assets/Screen%20Shot%202023-02-14%20at%2010.01.08%20PM.png)
 
 
 
