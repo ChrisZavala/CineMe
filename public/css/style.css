@@ -273,6 +273,10 @@
   
   .custom-section .card-content {
     padding: 0 0.5rem 0.5rem 0.5rem;
+    font-family: 'Limelight';
+    text-decoration-line: underline;
+    text-decoration-color: whitesmoke;
+    -webkit-text-fill-color: rgb(0, 0, 0);
   }
   
   .custom-section .card-content p {
@@ -280,6 +284,13 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+   
+  
+  .card-content p:hover {
+    box-shadow: 2px 2px 2px #ffc107;
+    cursor: pointer;
+  }
+  
   
   .custom-section .card img {
     width: 100%;
