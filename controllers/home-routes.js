@@ -192,9 +192,9 @@ router.get("/search/:type/:query", async (req, res) => {
         searchContent: searchData.data.results,
         loggedIn: req.session.loggedIn,
       });
-      //  if(!searchData) {
+      // if (!searchData !== query) {
       //   res.render("404-page");
-      //  }
+      // }
       
     } catch (err) {
       console.log(err);
