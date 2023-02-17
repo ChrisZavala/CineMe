@@ -80,18 +80,13 @@ SOFTWARE.
  The user can test the functicallity of this application for their use. Please report any issues or bugs to make this an even better user experience.  
 
   ## Video Link inserted here:
+  [Click to see the live site](https://morning-scrubland-50687.herokuapp.com/)
 
   ## Wireframe
   ![WireFrame](./public/assets/Screen%20Shot%202023-02-14%20at%203.04.35%20PM.png)
   ![WireFrame](./public/assets/Screen%20Shot%202023-02-14%20at%203.06.48%20PM.png)
   ![WireFrame](./public/assets/Screen%20Shot%202023-02-14%20at%203.05.56%20PM.png)
  ![WireFrame](./public/assets/Screen%20Shot%202023-02-14%20at%202.51.33%20PM.png)
-
-
-
-
-
-
 
   ## Screenshots of Project:
 ![Homepage](./public/assets/Screen%20Shot%202023-02-14%20at%2011.46.17%20PM.png)
